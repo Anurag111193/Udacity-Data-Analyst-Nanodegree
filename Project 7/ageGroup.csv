@@ -1,7 +1,7 @@
 Age Group,Survival Rate,Sex
-Child,0.525,Male
-Elder,0.3588957,Male
-Adult,0.166023,Male
-Child,0.651163,Female
-Elder,1,Female
-Adult,0.753731,Female
+Child,52.5,Male
+Elder,10.5263,Male
+Adult,16.6023,Male
+Child,65.1163,Female
+Elder,100,Female
+Adult,75.3731,Female

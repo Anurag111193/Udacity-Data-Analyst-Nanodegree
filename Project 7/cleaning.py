@@ -3,6 +3,7 @@ import numpy as np
 import pandas as pd
 import seaborn as sns
 dt = pd.read_csv('C:/wamp/www/Project 7/data.csv')
+dt = dt[dt["Age"].isnull() == False ]
 dt['Sex'].replace(['male','female'],[0,1],inplace=True)
 def child_pass(x):
     if x < 16:

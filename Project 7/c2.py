@@ -20,26 +20,26 @@ femDt = dt[dt.Sex == 1]
 
 menprbclass= menDt.groupby('Pclass').Survived.mean() 
 print "Male Survival Rate"
-print menprbclass
+print menprbclass * 100
 
 #femDt = dt[dt.Sex == 1]
 femprbclass= femDt.groupby('Pclass').Survived.mean()
 print "Female Survival Rate"
-print femprbclass
+print femprbclass * 100
 
 menprbclass= menDt.groupby('ChildPass').Survived.mean() 
 print "Male Survival Rate based on age group"
-print menprbclass
+print menprbclass * 100
 
 #femDt = dt[dt.Sex == 1]
 femprbclass= femDt.groupby('ChildPass').Survived.mean()
 print "Female Survival Rate based on age group"
-print femprbclass
+print femprbclass * 100
 
 
 femprbclass= dt.groupby('Parch').Survived.mean()
 print "Survival Rate based on siblings"
-print femprbclass
+print femprbclass * 100
 
 
 
