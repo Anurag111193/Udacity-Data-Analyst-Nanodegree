@@ -18,14 +18,29 @@
 	
 	<div class="row">
 		<div id="chart1"></div>
+		<div id="ch">
+		<script> document.write("Description: The chart 1 illustrates the Survival Rate v/s the Class and Gender of the passenger<br>") 
+		document.write(" As we can see the is continuous drop in survival rates when the classes are changing.")
+		</script>
+		</div>
 	</div>
 
 	<div class="row">
 		<div id="chart2"></div>
+				<div id="ch1">
+		<script> document.write("Description: The chart 2 illustrates the Survival Rate v/s the Age group and Gender of the passenger<br>") 
+		document.write(" As we can observe from the chart a lot of elders and childerns were saved but also a considerable amount of female adults were saved too.")
+		</script>
+		</div>
 	</div>
 
 	<div class="row">
 		<div id="chart3"></div>
+					<div id="ch2">
+		<script> document.write("Description: The chart3 illustrates the Survival Rate v/s the Parents with childern <br>") 
+		document.write(" As the ship was having a large number of families we can see that if the person is single or have a family of upto 4 members <br> were having high survial rates")
+		</script>
+		</div>
 	</div>
 
 	<script type="text/javascript">
@@ -45,6 +60,7 @@
          .style("font-weight", "bold")
          .text("Survival Rate per class ");
     chart.addLegend(65, 10, 510, 20, "right");
+	
     chart.draw();
     });
 
@@ -63,7 +79,10 @@
          .style("text-anchor", "middle")
          .style("font-weight", "bold")
          .text("Survival Rate per age group");
+			
+
     chart.draw();
+	
     }); 
 
     // 3 - Titanic survivors based on parents/children 
