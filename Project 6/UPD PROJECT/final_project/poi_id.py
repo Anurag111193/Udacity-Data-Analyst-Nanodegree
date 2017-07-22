@@ -24,6 +24,7 @@ from sklearn.ensemble import AdaBoostClassifier
 from sklearn.ensemble import GradientBoostingClassifier
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.cluster import KMeans
+from sklearn import cross_validation
 
 ### Load the dictionary containing the dataset
 data_dict = pickle.load(open("final_project_dataset.pkl", "r") )
@@ -35,8 +36,13 @@ for name in data_dict.keys():
         print data_dict[name]['email_address']
         print data_dict[name]
         num_poi += 1
-
+num_tut = 0
+for name in data_dict.keys():
+    num_tut += 1
 print "There are", num_poi, "POIs in total."
+print "There are", num_tut, "Users data in total."
+num_in = num_tut - num_poi
+print "There are", num_in, "Non POIs data in total."
 ### Task 2: Remove outliers
 outliers = ['TOTAL', 'THE TRAVEL AGENCY IN THE PARK']
 for outlier in outliers:
@@ -110,6 +116,9 @@ my_feature_list = [target_label] + best_features.keys()
 # 3.6 print features
 print "{0} selected features: {1}\n".format(len(my_feature_list) - 1, my_feature_list[1:])
 
+data = featureFormat(my_dataset, my_feature_list)
+# split into labels and features
+labels, features = targetFeatureSplit(data)
 
 def callNBC():
     ### Feature selection

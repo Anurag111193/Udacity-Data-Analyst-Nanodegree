@@ -11799,8 +11799,11 @@ scott.yeager@enron.com
 joe.hirko@enron.com
 mark.koenig@enron.com
 richard.causey@enron.com
-ben.glisan@enron.com
-There are 18 POIs in total.</p>
+ben.glisan@enron.com</p>
+<p>There are 18 POIs in total.
+There are 146 Users data in total.
+and finally 128 Non POI.</p>
+<p>The dataset contains two types of attributes one which are related to mails like emal, from email, to email and the others are related to money like salary, stocks, expenses, lonas etc.</p>
 
 </div>
 </div>
@@ -11832,7 +11835,11 @@ There are 18 POIs in total.</p>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>we can observe that features like total_payments, salary are variying which are causing outliers the keys creating the most outliers are:
-     TOTAL and THE TRAVEL AGENCY IN THE PARK</p>
+     TOTAL and THE TRAVEL AGENCY IN THE PARK.</p>
+<p>The outlier was removed using:
+outliers = ['TOTAL', 'THE TRAVEL AGENCY IN THE PARK']
+for outlier in outliers:
+    data_dict.pop(outlier, 0)</p>
 
 </div>
 </div>
@@ -11864,6 +11871,13 @@ There are 18 POIs in total.</p>
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>I have also used SelectK best features to find 9 best features we can use which are:
 9 selected features: ['salary', 'bonus', 'total_stock_value', 'shared_poi_per_email', 'fraction_to_poi', 'exercised_stock_options', 'deferred_income', 'restricted_stock', 'long_term_incentive']</p>
+<p>Since using selecktKbest we are removing low correlation value atttibutes the corelation of the attributes are as follows:</p>
+<p>[ 18.28968404   0.22461127   8.77277773   7.18405566  20.79225205
+   0.06549965  11.45847658  24.18289868   6.09417331  24.81507973
+   4.18747751   9.92218601   9.21281062   2.1263278    1.64634113
+   6.10692533   3.12809175  16.40971255   9.10126874   0.16970095
+   8.58942073   1.64634113   5.24344971   0.16970095   2.38261211
+   8.58942073  16.40971255]</p>
 
 </div>
 </div>
@@ -12120,6 +12134,72 @@ Similarly if LR is tuned with random state and class weight the results are:
 
 
 And we have selected only random state giving one of the perfect results. </code></pre>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Question 4: What does it mean to tune the parameters of an algorithm, and what can happen if you don’t do this well? How did you tune the parameters of your particular algorithm?</p>
+
+<pre><code>Parameters of any algorithm can change its behaviour towards the test data as it provides a better fit. the more is the algorithm tuned the more biased it is towards the data.
+
+In this data 8 algorithms have been applied and all of them are tried for tuning. apart from Logistic Regression others shows no or minimum change wrt to the data.
+
+The parameters of LR is shown below: 
+</code></pre>
+<p>Logistic regression: C (inverse regularization), class weight (weights associated with classes), max iteration (maximum number of iterations taken for the solvers to converge), random_state (the seed of the pseudo random number generator to use when shuffling the data), solver (using 'liblinear' since we have very small dataset).</p>
+<p>clf = Pipeline(steps=[
+        ('scaler', StandardScaler()),
+        ('classifier', LogisticRegression())
+])</p>
+<p>clf = Pipeline(steps=[
+        ('scaler', StandardScaler()),
+        ('classifier', LogisticRegression(tol = 0.001, C = 10**-8, penalty = 'l2', 
+                                          random_state = 42))
+])</p>
+<p>clf = Pipeline(steps=[
+        ('scaler', StandardScaler()),
+        ('classifier', LogisticRegression(tol = 0.001, C = 10**-8, penalty = 'l2', 
+                                          random_state = 42, class_weight = 'auto'))
+])</p>
+<p>the outputs of the tuning are as follows:</p>
+<p>LogisticRegression    Accuracy    Precision    Recall    F1    F2
+Not tuned     0.85    0.367    0.17    0.232    0.190
+Tuned  [FINAL]    0.792    0.329    0.542    0.406    0.48
+Tuned w/ auto class_weight     0.665    0.274    0.911    0.421    0.621</p>
+<p>Since the second tuned model gives the best accuracy precision and recall values that is it provides the best precision and recall values therefore it is selected and also LR is selected because of its extensibity in text mining applications.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Question 5: What is validation, and what’s a classic mistake you can make if you do it wrong? How did you validate your analysis?</p>
+<p>since the data overfits some or other validation technique is required to make sure that the system provides generalize result for rest of the database. to cross verify i have used:</p>
+<p>data = featureFormat(my_dataset, my_feature_list)
+  labels, features = targetFeatureSplit(data)</p>
+<p>The above code will use StratifiedSuffleSplit, it used because the dataset used has a less number of POI and rest of the data is also small making it neccasary to perform a random split of data to use.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Question 6: Give at least 2 evaluation metrics, and your average performance for each of them. Explain an interpretation of your metrics that says something human-understandable about your algorithm's performance</p>
+
+<pre><code>Here in this analysis the evaluation metrices are precision and recall. Precision is the value which depicts the true positive values of actual POI whereas recall defines the true positive value of people marked a flag POI.
+
+Here we are using LR as the final model with Precision as 0.32 and 0.54 as precision and recall respectivels. The values shows that if 100 people are POI then from that around 32 peoples are actual poi and rest 68 people are innocent whereas recall shows that the accuracy of fetching POI (Precision) has an accuracy of 54%. Due to such small and unclear data the system has a low pecision and recall values. </code></pre>
 
 </div>
 </div>
