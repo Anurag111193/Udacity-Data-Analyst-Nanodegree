@@ -11859,7 +11859,7 @@ for outlier in outliers:
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Yes I have created Some varibales, First is email_exist which will tell that the poi are having a valid email if not they can be discarded. Second is the Shared_poi which will tell that if the POI's have done communication between them. Next is the ration of the mails sent from poi and last is the emails received by the poi.</p>
+<p>Yes I have created Some varibales, First is email_exist which will tell that the poi are having a valid email if not they can be discarded. Second is the Shared_poi which will tell that if the POI's have done communication between them. Next is the ratio of the mails sent from poi and last is the emails received by the poi.</p>
 
 </div>
 </div>
@@ -11878,6 +11878,30 @@ for outlier in outliers:
    6.10692533   3.12809175  16.40971255   9.10126874   0.16970095
    8.58942073   1.64634113   5.24344971   0.16970095   2.38261211
    8.58942073  16.40971255]</p>
+
+<pre><code>variable    score
+</code></pre>
+<p>1    exercised_stock_options    24.72
+2    total_stock_value    24.4
+3    fraction_to_poi    22.98
+4    bonus    22.07
+5    salary    16.54
+6    restricted_stock    12.12
+7    long_term_incentive    11.32
+8    deferred_income    11.26
+9    expenses    9.41
+10    total_payments    9.24
+11    loan_advances    7.49
+12    shared_receipt_with_poi    7.2
+13    shared_poi_per_email    6.96
+14    email_exists    5.35
+15    other    4.62
+16    director_fees    2.02
+17    fraction_from_poi    1.84
+18    to_messages    1.35
+19    from_messages    0.15
+20    deferral_payments    0.09</p>
+<p>Then using the SelectKBest function in sklearn.feature_selection module, I got the highest 20 features and their scores. ‘fraction_to_poi’ ranks the 3th, ‘shared_poi_per_email’, ‘email_exists’ and ‘fraction_from_poi’ in the 13th, 14th and 17th place, respectively.</p>
 
 </div>
 </div>
@@ -12199,7 +12223,7 @@ Tuned w/ auto class_weight     0.665    0.274    0.911    0.421    0.621</p>
 
 <pre><code>Here in this analysis the evaluation metrices are precision and recall. Precision is the value which depicts the true positive values of actual POI whereas recall defines the true positive value of people marked a flag POI.
 
-Here we are using LR as the final model with Precision as 0.32 and 0.54 as precision and recall respectivels. The values shows that if 100 people are POI then from that around 32 peoples are actual poi and rest 68 people are innocent whereas recall shows that the accuracy of fetching POI (Precision) has an accuracy of 54%. Due to such small and unclear data the system has a low pecision and recall values. </code></pre>
+Here we are using LR as the final model with Precision as 0.32 and 0.54 as precision and recall respectivels. Since we have to search for POI from the data that is we are doing Recall here the recall percentage is 54% that is if 100 people are searched the recall will be 54 poi now to enhance this precision is applied, it shows that what is the percentage of correctness of the recall values here the precision is 32% that is from 54 recalled POI 17 people are actual culprit rest canbe innocent. Due to such small and unclear data the system has a low pecision and recall values. </code></pre>
 
 </div>
 </div>
@@ -12232,6 +12256,7 @@ Here we are using LR as the final model with Precision as 0.32 and 0.54 as preci
 <p>[2]<a href="http://discussions.udacity.com/t/when-to-use-feature-scaling/12923">http://discussions.udacity.com/t/when-to-use-feature-scaling/12923</a></p>
 <p>[3]<a href="http://scikit-learn.org/stable/modules/model_evaluation.html#scoring-parameter">http://scikit-learn.org/stable/modules/model_evaluation.html#scoring-parameter</a></p>
 <p>[4]<a href="https://www.analyticsvidhya.com/blog/2015/11/quick-introduction-boosting-algorithms-machine-learning/">https://www.analyticsvidhya.com/blog/2015/11/quick-introduction-boosting-algorithms-machine-learning/</a></p>
+<p>[5] <a href="https://www.quora.com/What-is-the-best-way-to-understand-the-terms-precision-and-recall">https://www.quora.com/What-is-the-best-way-to-understand-the-terms-precision-and-recall</a></p>
 
 </div>
 </div>

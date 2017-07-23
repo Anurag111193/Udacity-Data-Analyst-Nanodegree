@@ -124,22 +124,22 @@ def callNBC():
     ### Feature selection
     num_to_keep = 8
     my_features_list = select_k_best_features(my_dataset, features_list, num_to_keep)
-    clf = Pipeline(steps=[
+    clfn = Pipeline(steps=[
             ('scaler', StandardScaler()),
             ('classifier', GaussianNB())
     ])
-    tester_prep(clf, my_dataset, my_features_list)
+    tester_prep(clfn, my_dataset, my_features_list)
 
 
 def callKM():
     ### Feature selection
     num_to_keep = 8
     my_features_list = select_k_best_features(my_dataset, features_list, num_to_keep) 
-    clf = Pipeline(steps=[
+    clfk = Pipeline(steps=[
             ('scaler', StandardScaler()),
             ('classifier', KMeans(n_clusters=2, tol=0.001))
     ])
-    tester_prep(clf, my_dataset, my_features_list)
+    tester_prep(clfk, my_dataset, my_features_list)
 
 def callADA():
     ### Feature selection
@@ -147,11 +147,11 @@ def callADA():
     my_features_list = select_k_best_features(my_dataset, features_list, num_to_keep)
     #from sklearn import tree
     dt = DecisionTreeClassifier() 
-    clf = Pipeline(steps=[
+    clfa = Pipeline(steps=[
             ('scaler', StandardScaler()),
             ('classifier', AdaBoostClassifier(n_estimators=100, base_estimator=dt,learning_rate=1))
     ])
-    tester_prep(clf, my_dataset, my_features_list)
+    tester_prep(clfa, my_dataset, my_features_list)
 
 def callGRA():
     ### Feature selection
@@ -160,13 +160,13 @@ def callGRA():
     #dt = DecisionTreeClassifier() 
     
 
-    clf = Pipeline(steps=[
+    clfg = Pipeline(steps=[
             ('scaler', StandardScaler()),
             ('classifier', GradientBoostingClassifier(n_estimators=100, learning_rate=1.0, max_depth=1))
     ])
 
 
-    tester_prep(clf, my_dataset, my_features_list)
+    tester_prep(clfg, my_dataset, my_features_list)
 
 ### Random Forest Classifier with best K features
 def callRFC():
@@ -175,7 +175,7 @@ def callRFC():
     my_features_list = select_k_best_features(my_dataset, features_list, num_to_keep)
 
     
-    clf = Pipeline(steps=[
+    clfr = Pipeline(steps=[
             ('scaler', StandardScaler()),
             ('classifier', RandomForestClassifier(max_depth = 5, 
                                  max_features = 'sqrt', 
@@ -184,7 +184,7 @@ def callRFC():
 
     ])
 
-    tester_prep(clf, my_dataset, my_features_list)
+    tester_prep(clfr, my_dataset, my_features_list)
 
 
 
@@ -192,15 +192,13 @@ def callLR():
     ### Feature selection
     num_to_keep = 16
     my_features_list = select_k_best_features(my_dataset, features_list, num_to_keep)
-
-   ##
-    clf = Pipeline(steps=[
+    clfl = Pipeline(steps=[
             ('scaler', StandardScaler()),
             ('classifier', LogisticRegression(tol = 0.001, C = 10**-8, penalty = 'l2', 
                                               random_state = 42))
     ])
 
-    tester_prep(clf, my_dataset, my_features_list)
+    tester_prep(clfl, my_dataset, my_features_list)
 
 
 def callSVC():
@@ -209,13 +207,13 @@ def callSVC():
     my_features_list = select_k_best_features(my_dataset, features_list, num_to_keep)
 
   
-    clf = Pipeline(steps=[
+    clfs = Pipeline(steps=[
             ('scaler', StandardScaler()),
             ('classifier', SVC(kernel = 'rbf', C = 1000, gamma = 0.0001, 
                                random_state = 42, class_weight = 'auto'))
     ])
 
-    tester_prep(clf, my_dataset, my_features_list)
+    tester_prep(clfs, my_dataset, my_features_list)
 
 
 def tester_prep(clf, my_dataset, my_features_list):
@@ -228,7 +226,7 @@ def tester_prep(clf, my_dataset, my_features_list):
 
 print "Select Algorithm: \n"
 print "1. Naive Bayes\n"
-print "2. Logistic Regression\n"
+print "2. Logistic Regression (Final Method Selected by me)\n"
 print "3. SVC\n"
 print "4. Random Forest\n";
 print "5. K means\n";
@@ -243,7 +241,7 @@ if (a == 1):
     callNBC()
 
 if (a == 2):
-    print "Running Logistic Regression Classifier\n"
+    print "Running Logistic Regression Classifier (Final Method Selected by me)\n"
     callLR()
 
 if ( a == 3):
@@ -273,7 +271,7 @@ if ( a == 8):
     callRFC()
     print "Running Naive Bayes Classifier\n"
     callNBC()
-    print "Running Logistic Regression Classifier\n"
+    print "Running Logistic Regression Classifier (Final Method Selected by me)\n"
     callLR()
     print "Running Kmeans Classifier\n"
     callKM()
@@ -282,5 +280,19 @@ if ( a == 8):
     print "Running Gradient Boost Classifier\n"
     callGRA()
 
+### Select Logistic Regression as final algorithm
+clf = Pipeline(steps=[
+            ('scaler', StandardScaler()),
+            ('classifier', LogisticRegression(tol = 0.001, C = 10**-8, penalty = 'l2', 
+                                              random_state = 42))
+    ])
+
+
+
+# dump your classifier, dataset and features_list so
+# anyone can run/check your results
+pickle.dump(clf, open("../my_classifier.pkl", "w"))
+pickle.dump(my_dataset, open("../my_dataset.pkl", "w"))
+pickle.dump(my_feature_list, open("../my_feature_list.pkl", "w"))
 
 
