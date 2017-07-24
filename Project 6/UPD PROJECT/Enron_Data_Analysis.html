@@ -11879,29 +11879,13 @@ for outlier in outliers:
    8.58942073   1.64634113   5.24344971   0.16970095   2.38261211
    8.58942073  16.40971255]</p>
 
-<pre><code>variable    score
+<pre><code>Features:['salary', 'deferral_payments', 'total_payments', 'loan_advances', 'bonus', 'restricted_stock_deferred', 'deferred_income', 'total_stock_value', 'expenses', 'exercised_stock_options', 'other', 'long_term_incentive', 'restricted_stock', 'director_fees', 'to_messages', 'email_exists', 'fraction_from_poi', 'fraction_to_poi', 'shared_poi_per_email', 'from_messages', 'shared_receipt_with_poi'] and Score: [ 18.28968404   0.22461127   8.77277773   7.18405566  20.79225205
 </code></pre>
-<p>1    exercised_stock_options    24.72
-2    total_stock_value    24.4
-3    fraction_to_poi    22.98
-4    bonus    22.07
-5    salary    16.54
-6    restricted_stock    12.12
-7    long_term_incentive    11.32
-8    deferred_income    11.26
-9    expenses    9.41
-10    total_payments    9.24
-11    loan_advances    7.49
-12    shared_receipt_with_poi    7.2
-13    shared_poi_per_email    6.96
-14    email_exists    5.35
-15    other    4.62
-16    director_fees    2.02
-17    fraction_from_poi    1.84
-18    to_messages    1.35
-19    from_messages    0.15
-20    deferral_payments    0.09</p>
-<p>Then using the SelectKBest function in sklearn.feature_selection module, I got the highest 20 features and their scores. ‘fraction_to_poi’ ranks the 3th, ‘shared_poi_per_email’, ‘email_exists’ and ‘fraction_from_poi’ in the 13th, 14th and 17th place, respectively.</p>
+<p>0.06549965  11.45847658  24.18289868   6.09417331  24.81507973
+   4.18747751   9.92218601   9.21281062   2.1263278    1.64634113
+   6.10692533   3.12809175  16.40971255   9.10126874   0.16970095
+   8.58942073]</p>
+<p>Then using the SelectKBest function in sklearn.feature_selection module.</p>
 <p>As observed from the chart below the Score of the variables is continuously decreasing we have scores high as 25 and low as 1 therefore we are using SelectKBest features to fetch the best features. SelectKBest are used since it finds the best features according to the dataset.</p>
 
 </div>

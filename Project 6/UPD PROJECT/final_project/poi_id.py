@@ -105,7 +105,8 @@ def get_k_best(data_dict, my_feature_list, k):
     sorted_pairs = list(reversed(sorted(unsorted_pairs, key=lambda x: x[1])))
     k_best_features = dict(sorted_pairs[:k])
     print "{0} best features: {1}\n".format(k, k_best_features.keys())
-    print scores
+    
+    print "Features:{0} and Score: {1}".format(features_list[1:], scores)
     return k_best_features
 
 
