@@ -91,7 +91,7 @@ target_label = 'poi'
 num_features = 10 
 
 # function using SelectKBest to find best features
-def get_k_best(data_dict, features_list, k):
+def get_k_best(data_dict, my_feature_list, k):
     """ runs scikit-learn's SelectKBest feature selection
         returns dict where keys=features, values=scores
     """
