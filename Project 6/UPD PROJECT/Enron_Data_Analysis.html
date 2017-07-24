@@ -11902,6 +11902,17 @@ for outlier in outliers:
 19    from_messages    0.15
 20    deferral_payments    0.09</p>
 <p>Then using the SelectKBest function in sklearn.feature_selection module, I got the highest 20 features and their scores. ‘fraction_to_poi’ ranks the 3th, ‘shared_poi_per_email’, ‘email_exists’ and ‘fraction_from_poi’ in the 13th, 14th and 17th place, respectively.</p>
+<p>As observed from the chart below the Score of the variables is continuously decreasing we have scores high as 25 and low as 1 therefore we select 9 as our cutoff percentage and we find that 10 scores are above the cutoff score.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><img src="img/score.png" alt="title"></p>
 
 </div>
 </div>
